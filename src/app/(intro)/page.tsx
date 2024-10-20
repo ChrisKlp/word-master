@@ -1,7 +1,11 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
 
 import hero from '@/assets/hero.svg';
 import { Button } from '@/components/ui/button';
+import { routes } from '@/lib/routes';
 
 export default function Home() {
   return (
@@ -10,8 +14,8 @@ export default function Home() {
       <h1 className="max-w-[400px] text-center text-2xl font-bold text-neutral-600 lg:text-3xl">
         Ucz się, ćwicz i doskonal swoją edukację z Word Master
       </h1>
-      <Button variant="secondary" className="w-full max-w-[400px]">
-        Zacznij grę
+      <Button asChild variant="secondary" className="w-full max-w-[400px]">
+        <Link href={routes.games}>Zacznij grę</Link>
       </Button>
     </div>
   );
