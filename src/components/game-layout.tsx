@@ -14,13 +14,14 @@ type GameLayoutProps = {
     words: string[];
     syllables: string[];
   };
+  gameId: string;
 };
 
 export default function GameLayout({ data }: GameLayoutProps) {
-  const [gameData, setGameData] = useState({
+  const [gameData] = useState({
     words: data.words.slice(0, 10),
   });
-  const [progress, setProgress] = useState(2);
+  const [progress] = useState(2);
 
   const getCurrentWord = () => {
     if (progress >= gameData.words.length) {
@@ -44,7 +45,7 @@ export default function GameLayout({ data }: GameLayoutProps) {
     return [...getRandomSyllables(), ...wordSyllables];
   };
 
-  const currentProgress = (progress / gameData.words.length) * 100;
+  // const currentProgress = (progress / gameData.words.length) * 100;
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">

@@ -2,7 +2,7 @@ import { CaseSensitive } from 'lucide-react';
 
 import GameButtonLink from '@/components/game-button-link';
 import MainLayout from '@/components/main-layout';
-import { gameRoutes, routes } from '@/lib/routes';
+import { gameRoutes } from '@/lib/routes';
 
 export default function Home() {
   return (

@@ -6,5 +6,5 @@ export default function SingleGame({
 }: {
   params: { id: string };
 }) {
-  return <GameLayout data={twoSyllables} />;
+  return <GameLayout data={twoSyllables} gameId={id} />;
 }
