@@ -15,7 +15,7 @@ body {
       to bottom,
       transparent 0px,
       transparent 60px,
-      #00000050 61px
+      #bcbcbc 61px
     );
   }
   .bg-three-lines {
@@ -33,6 +33,10 @@ body {
       transparent 72%,
       transparent 100%
     );
+  }
+
+  .container {
+    @apply mx-auto max-w-screen-lg;
   }
 }
 

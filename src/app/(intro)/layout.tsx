@@ -4,7 +4,7 @@ import Logo from '@/components/logo';
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
-    <div className="flex min-h-dvh flex-col overflow-hidden">
+    <div className="flex h-dvh flex-col">
       <header className="grid h-24 place-items-center">
         <Logo />
       </header>

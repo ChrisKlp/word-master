@@ -49,7 +49,7 @@ export default function GameLayout({ data }: GameLayoutProps) {
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden">
-      <header className="flex h-16 items-center justify-between gap-2 px-6">
+      <header className="container flex h-16 items-center justify-between gap-2 px-6">
         <Button
           asChild
           variant="ghost"
@@ -62,7 +62,7 @@ export default function GameLayout({ data }: GameLayoutProps) {
         </Button>
         <Progress value={67} />
       </header>
-      <main className="w-full flex-1 overflow-y-auto">
+      <main className="container w-full flex-1 overflow-y-auto">
         <div className="flex h-full flex-col px-6">
           <div className="grid h-32 place-items-center">
             <p className="text-4xl font-bold capitalize">{getFullWord()}</p>
@@ -79,10 +79,12 @@ export default function GameLayout({ data }: GameLayoutProps) {
           </div>
         </div>
       </main>
-      <footer className="grid h-24 items-center gap-2 bg-green-400 px-6">
-        <Button variant="secondary" className="-mr-2 flex-shrink-0">
-          Sukces
-        </Button>
+      <footer className="bg-green-400">
+        <div className="container grid h-24 items-center gap-2 px-6">
+          <Button variant="secondary" className="w-full">
+            Sukces
+          </Button>
+        </div>
       </footer>
     </div>
   );

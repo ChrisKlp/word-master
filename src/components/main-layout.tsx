@@ -6,7 +6,7 @@ import { routes } from '@/lib/routes';
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
-    <div className="flex h-dvh flex-col overflow-hidden">
+    <div className="container flex h-dvh flex-col overflow-hidden">
       <header className="flex h-16 items-center justify-between px-6">
         <Logo href={routes.game} />
         <PointsButton />
