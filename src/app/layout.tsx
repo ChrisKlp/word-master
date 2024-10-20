@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 
+import { ThemeProvider } from '@/components/theme-provider';
+
 import './globals.css';
 
 const nunito = Nunito({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata: Metadata = {
-  title: 'Edu Games Zone',
+  title: 'Word Master',
   description: 'Learning platform for kids',
 };
 
@@ -16,8 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={nunito.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={nunito.className}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
