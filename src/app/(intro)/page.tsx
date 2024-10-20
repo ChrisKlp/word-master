@@ -15,7 +15,7 @@ export default function Home() {
         Ucz się, ćwicz i doskonal swoją edukację z Word Master
       </h1>
       <Button asChild variant="secondary" className="w-full max-w-[400px]">
-        <Link href={routes.games}>Zacznij grę</Link>
+        <Link href={routes.game}>Zacznij grę</Link>
       </Button>
     </div>
   );
