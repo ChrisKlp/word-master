@@ -21,7 +21,7 @@ const Progress = React.forwardRef<
       className="h-full w-full flex-1 bg-amber-400 transition-all"
       style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
     />
-    <div className="absolute inset-[4_10_0_10] h-1 rounded-full bg-white/20" />
+    <div className="absolute left-2 right-2 top-1 h-1 rounded-full bg-white/20" />
   </ProgressPrimitive.Root>
 ));
 Progress.displayName = ProgressPrimitive.Root.displayName;
