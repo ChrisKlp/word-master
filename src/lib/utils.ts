@@ -9,6 +9,11 @@ export function setPoints(points: number) {
   localStorage.setItem('wm_points', points.toString());
 }
 
+export function setTenPoints() {
+  const currentPoints = getPoints();
+  setPoints(currentPoints + 10);
+}
+
 export function getPoints() {
   return Number(localStorage.getItem('wm_points')) || 0;
 }
