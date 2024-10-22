@@ -1,10 +1,10 @@
 import { PropsWithChildren } from 'react';
 
-import Logo from '@/components/logo';
-import PointsButton from '@/components/points-button';
+import { Logo } from '@/components/logo';
+import { PointsButton } from '@/components/points-button';
 import { routes } from '@/lib/routes';
 
-export default function MainLayout({ children }: PropsWithChildren) {
+export function MainLayout({ children }: PropsWithChildren) {
   return (
     <div className="container flex h-dvh flex-col overflow-hidden">
       <header className="flex h-16 items-center justify-between px-6">

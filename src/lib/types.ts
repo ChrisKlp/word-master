@@ -19,3 +19,10 @@ export type SelectedSyllable = {
   syllable: string;
   baseIndex: number;
 };
+
+export enum GameStatus {
+  'idle' = 'idle',
+  'success' = 'success',
+  'error' = 'error',
+  'warning' = 'warning',
+}

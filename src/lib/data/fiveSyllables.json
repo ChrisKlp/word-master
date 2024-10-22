@@ -1,9 +1,20 @@
-[
-  "a-bra-ka-da-bra",
-  "au-stra-lo-pi-tek",
-  "da-le-ko-wscho-dni",
-  "ka-lo-ry-fe-ry",
-  "lo-ko-mo-ty-wa",
-  "po-dró-żo-wa-nie",
-  "te-mpe-ro-wa-nie"
-]
+{
+  "words": [
+    "a-bra-ka-da-bra",
+    "au-stra-lo-pi-tek",
+    "da-le-ko-wscho-dni",
+    "ka-lo-ry-fe-ry",
+    "lo-ko-mo-ty-wa",
+    "po-dró-żo-wa-nie",
+    "te-mpe-ro-wa-nie"
+  ],
+  "syllables": [
+    "a-bra-ka-da-bra",
+    "au-stra-lo-pi-tek",
+    "da-le-ko-wscho-dni",
+    "ka-lo-ry-fe-ry",
+    "lo-ko-mo-ty-wa",
+    "po-dró-żo-wa-nie",
+    "te-mpe-ro-wa-nie"
+  ]
+}

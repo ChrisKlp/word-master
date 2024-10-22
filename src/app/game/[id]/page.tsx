@@ -1,12 +1,21 @@
-import GameLayout from '@/components/game-level';
-import twoSyllables from '@/lib/data/twoSyllables.json';
-import { getGameLevelData } from '@/lib/game-utils';
+import { notFound } from 'next/navigation';
+
+import { getGameData } from '@/lib/game-data';
+
+import { Game } from './_components/game';
+
+export const dynamic = 'force-dynamic';
 
 export default function SingleGame({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const gameData = getGameLevelData(twoSyllables, 10);
-  return <GameLayout data={gameData} gameId={id} />;
+  const gameData = getGameData(id);
+
+  if (!gameData) {
+    notFound();
+  }
+
+  return <Game gameData={gameData} />;
 }

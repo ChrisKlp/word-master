@@ -3,6 +3,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { GameData } from './types';
 
+export const gameImages = [
+  '/man.svg',
+  '/woman.svg',
+  '/robot.svg',
+  '/zombie.svg',
+];
+
 export function pickWords(words: string[], n = 10) {
   return pipe(words, shuffle(), take(n));
 }

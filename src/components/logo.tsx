@@ -10,7 +10,7 @@ type LogoProps = {
   variant?: 'default' | 'minimal';
 };
 
-export default function Logo({
+export function Logo({
   href = '/',
   className,
   variant = 'default',

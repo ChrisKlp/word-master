@@ -5,11 +5,10 @@ import Link from 'next/link';
 import React, { useLayoutEffect, useState } from 'react';
 
 import pointsImg from '@/assets/points.svg';
+import { Button } from '@/components/ui/button';
 import { getPoints } from '@/lib/utils';
 
-import { Button } from './ui/button';
-
-export default function PointsButton() {
+export function PointsButton() {
   const [points, setPoints] = useState(0);
 
   useLayoutEffect(() => {

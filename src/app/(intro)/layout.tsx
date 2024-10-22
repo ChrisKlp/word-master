@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import Logo from '@/components/logo';
+import { Logo } from '@/components/logo';
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (

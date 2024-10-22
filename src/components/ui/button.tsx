@@ -32,6 +32,9 @@ const buttonVariants = cva(
         lg: 'h-12 px-8',
         icon: 'h-10 w-10',
         rounded: 'rounded-full',
+        speaker: 'rounded-full h-16 w-16 text-xl',
+        speakerSmall: 'rounded-full h-12 w-12',
+        word: 'h-12 px-4 py-2 text-md',
       },
     },
     defaultVariants: {

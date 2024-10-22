@@ -1,18 +1,38 @@
-[
-  "te-le-wi-zor",
-  "kos-me-tycz-ka",
-  "no-so-ro-żec",
-  "port-mo-net-ka",
-  "ko-lo-ro-wy",
-  "ko-szy-ków-ka",
-  "ka-ru-ze-la",
-  "bran-so-le-ta",
-  "ko-ni-czy-na",
-  "he-li-kop-ter",
-  "kla-wia-tu-ra",
-  "cię-ża-rów-ka",
-  "kra-sno-lu-dek",
-  "sa-la-ma-ndra",
-  "ty-ra-no-zaur",
-  "wy-ści-gów-ka"
-]
+{
+  "words": [
+    "te-le-wi-zor",
+    "kos-me-tycz-ka",
+    "no-so-ro-żec",
+    "port-mo-net-ka",
+    "ko-lo-ro-wy",
+    "ko-szy-ków-ka",
+    "ka-ru-ze-la",
+    "bran-so-le-ta",
+    "ko-ni-czy-na",
+    "he-li-kop-ter",
+    "kla-wia-tu-ra",
+    "cię-ża-rów-ka",
+    "kra-sno-lu-dek",
+    "sa-la-ma-ndra",
+    "ty-ra-no-zaur",
+    "wy-ści-gów-ka"
+  ],
+  "syllables": [
+    "te-le-wi-zor",
+    "kos-me-tycz-ka",
+    "no-so-ro-żec",
+    "port-mo-net-ka",
+    "ko-lo-ro-wy",
+    "ko-szy-ków-ka",
+    "ka-ru-ze-la",
+    "bran-so-le-ta",
+    "ko-ni-czy-na",
+    "he-li-kop-ter",
+    "kla-wia-tu-ra",
+    "cię-ża-rów-ka",
+    "kra-sno-lu-dek",
+    "sa-la-ma-ndra",
+    "ty-ra-no-zaur",
+    "wy-ści-gów-ka"
+  ]
+}

@@ -12,7 +12,7 @@ type GameButtonProps = {
   variant?: 'primary' | 'secondary';
 };
 
-export default function GameButtonLink({
+export function GameButtonLink({
   href,
   title,
   icon,

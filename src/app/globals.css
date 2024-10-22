@@ -13,25 +13,10 @@ body {
   .bg-math-lines {
     background-image: repeating-linear-gradient(
       to bottom,
-      transparent 0px,
-      transparent 60px,
-      #bcbcbc 61px
-    );
-  }
-  .bg-three-lines {
-    background-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 20%,
-      black 21%,
-      transparent 22%,
-      transparent 45%,
-      black 46%,
-      transparent 47%,
-      transparent 70%,
-      black 71%,
-      transparent 72%,
-      transparent 100%
+      #e2e8f095 0px,
+      #e2e8f095 2px,
+      transparent 2px,
+      transparent 60px
     );
   }
 
