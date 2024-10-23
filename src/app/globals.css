@@ -23,6 +23,10 @@ body {
   .container {
     @apply mx-auto max-w-screen-lg;
   }
+
+  .icon-text {
+    @apply text-4xl lowercase;
+  }
 }
 
 @layer base {
