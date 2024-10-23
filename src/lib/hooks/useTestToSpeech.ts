@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { filter, findIndex } from 'remeda';
 
 export function useTextToSpeech(language: string | null = 'pl-PL') {
   const [supported, setSupported] = useState(false);
