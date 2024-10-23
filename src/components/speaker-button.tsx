@@ -2,7 +2,7 @@
 
 import { Pause, Volume2 } from 'lucide-react';
 
-import useTextToSpeech from '@/lib/hooks/useTestToSpeech';
+import { useTextToSpeech } from '@/lib/hooks/useTestToSpeech';
 
 import { Button } from './ui/button';
 
@@ -28,6 +28,7 @@ export function SpeakerButton({ text, language, size = 'speaker' }: Props) {
       onClick={handleClick}
       size={size}
       variant={size === 'speaker' ? 'primary' : 'danger'}
+      className="flex-shrink-0"
     >
       {speaking ? <Pause /> : <Volume2 />}
     </Button>

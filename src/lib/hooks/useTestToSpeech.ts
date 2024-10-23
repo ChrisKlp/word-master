@@ -1,8 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { filter, findIndex } from 'remeda';
 
-export default function useTextToSpeech(language: string | null = 'pl-PL') {
+export function useTextToSpeech(language: string | null = 'pl-PL') {
   const [supported, setSupported] = useState(false);
   const [speaking, setSpeaking] = useState(false);
 
@@ -34,7 +35,7 @@ export default function useTextToSpeech(language: string | null = 'pl-PL') {
       }
 
       utterance.pitch = 0.6;
-      utterance.rate = 0.6;
+      utterance.rate = 1;
       utterance.onend = handleEnd;
       window.speechSynthesis.speak(utterance);
     },

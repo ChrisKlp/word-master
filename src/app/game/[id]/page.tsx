@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { getGameData } from '@/lib/game-data';
 
-import { Game } from './_components/game';
+import { Game } from '../../../components/game/game';
 
 export const dynamic = 'force-dynamic';
 

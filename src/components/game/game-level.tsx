@@ -1,11 +1,8 @@
 'use client';
 
-import { ArrowLeft, Check, CircleX } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import Confetti from 'react-confetti';
-import { useAudio, useWindowSize } from 'react-use';
+import { useAudio } from 'react-use';
 import {
   filter,
   find,
@@ -17,12 +14,14 @@ import {
 
 import { SpeakerButton } from '@/components/speaker-button';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
 import { gameImages } from '@/lib/game-utils';
-import useTextToSpeech from '@/lib/hooks/useTestToSpeech';
-import { routes } from '@/lib/routes';
+import { useTextToSpeech } from '@/lib/hooks/useTestToSpeech';
 import { GameLevelData, GameStatus, SelectedSyllable } from '@/lib/types';
-import { cn, setTenPoints } from '@/lib/utils';
+import { setTenPoints } from '@/lib/utils';
+
+import { CongratulationsView } from './congratulations-view';
+import { GameFooter } from './game-footer';
+import { GameHeader } from './game-header';
 
 type GameLevelProps = {
   data: GameLevelData;
@@ -38,6 +37,7 @@ export function GameLevel({ data }: GameLevelProps) {
     SelectedSyllable[]
   >([]);
   const { speak, supported } = useTextToSpeech();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [correctAudio, _, correctControls] = useAudio({
     src: '/correct.wav',
@@ -50,7 +50,6 @@ export function GameLevel({ data }: GameLevelProps) {
   const [finishAudio, ___, finishControls] = useAudio({
     src: '/finish.mp3',
   });
-  const { width, height } = useWindowSize();
 
   const cWord = data.levelData[progress];
 
@@ -96,51 +95,23 @@ export function GameLevel({ data }: GameLevelProps) {
       {correctAudio}
       {incorrectAudio}
       <div className="flex h-dvh flex-col overflow-hidden">
-        <header className="container flex h-16 items-center justify-between gap-2 px-6">
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            className="-ml-2 flex-shrink-0"
-          >
-            <Link href={routes.game}>
-              <ArrowLeft className="stroke-slate300" />
-            </Link>
-          </Button>
-          <Progress value={isFinished ? 100 : currentProgress} />
-        </header>
+        <GameHeader isFinished={isFinished} currentProgress={currentProgress} />
         {isFinished ? (
-          <main className="container mt-10 grid w-full flex-1 content-start justify-items-center gap-4 overflow-y-auto">
-            <Confetti
-              width={width}
-              height={height}
-              recycle={false}
-              numberOfPieces={500}
-              tweenDuration={10000}
-            />
-            <Image src={'/finish.svg'} width={200} height={200} alt="Man" />
-            <h1 className="text-3xl font-bold">GRATULACJE!</h1>
-            <p>Właśnie skończyłas rundę</p>
-            <div className="flex items-center gap-2">
-              <Image src={'/points.svg'} width={40} height={40} alt="points" />
-              <p className="font-bold text-amber-500">+ 10 punktów</p>
-            </div>
-            <Button asChild>
-              <Link href={routes.game}>Powrót</Link>
-            </Button>
-          </main>
+          <CongratulationsView />
         ) : (
           <>
             <main className="container w-full flex-1 overflow-y-auto">
               <div className="flex h-full flex-col px-6">
-                <div className="flex h-32 items-center justify-between">
-                  <div className="flex items-center">
-                    <Image
-                      src={gameImages[progress % gameImages.length]}
-                      width={100}
-                      height={100}
-                      alt="Man"
-                    />
+                <div className="flex h-1/3 min-h-32 items-center justify-between">
+                  <div className="flex h-full w-full items-center overflow-hidden">
+                    <div className="relative aspect-square h-full max-w-[40vw]">
+                      <Image
+                        src={gameImages[progress % gameImages.length]}
+                        fill
+                        alt="person"
+                        className="py-2"
+                      />
+                    </div>
                     <SpeakerButton text={cWord.displayWord} />
                   </div>
                   <SpeakerButton
@@ -167,7 +138,7 @@ export function GameLevel({ data }: GameLevelProps) {
                     </Button>
                   ))}
                 </div>
-                <div className="flex h-44 flex-wrap content-end items-end justify-center gap-2 pb-6">
+                <div className="flex h-1/3 min-h-44 flex-wrap content-end items-end justify-center gap-2 pb-6">
                   {cWord.syllables.map((i, index) => {
                     const currentItem: SelectedSyllable = {
                       syllable: i,
@@ -193,50 +164,7 @@ export function GameLevel({ data }: GameLevelProps) {
                 </div>
               </div>
             </main>
-            <footer
-              className={cn(
-                'bg-slate-100 transition-all',
-                status === GameStatus.error && 'bg-red-100',
-                status === GameStatus.success && 'bg-green-100',
-              )}
-            >
-              <div className="container grid h-24 grid-flow-col grid-cols-2 items-center gap-8 px-6">
-                <p
-                  className={cn(
-                    'inline-flex items-center gap-2 font-bold',
-                    status === GameStatus.error
-                      ? 'text-red-700'
-                      : 'text-green-700',
-                  )}
-                >
-                  {(() => {
-                    switch (status) {
-                      case GameStatus.success:
-                        return (
-                          <>
-                            <Check /> SUKCES
-                          </>
-                        );
-                      case GameStatus.error:
-                        return (
-                          <>
-                            <CircleX /> BŁĄD
-                          </>
-                        );
-                      default:
-                        return <></>;
-                    }
-                  })()}
-                </p>
-                <Button
-                  variant={status === GameStatus.error ? 'danger' : 'secondary'}
-                  className="block w-full truncate"
-                  onClick={handleUpdateProgress}
-                >
-                  SPRAWDŹ
-                </Button>
-              </div>
-            </footer>
+            <GameFooter onClick={handleUpdateProgress} status={status} />
           </>
         )}
       </div>
