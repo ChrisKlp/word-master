@@ -1,16 +1,19 @@
+'use client';
+
 import { notFound } from 'next/navigation';
+import { use } from 'react';
 
+import { Game } from '@/components/game/game';
 import { getGameData } from '@/lib/game-data';
-
-import { Game } from '../../../components/game/game';
 
 export const dynamic = 'force-dynamic';
 
 export default function SingleGame({
-  params: { id },
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
   const gameData = getGameData(id);
 
   if (!gameData) {
