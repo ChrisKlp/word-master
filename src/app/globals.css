@@ -25,7 +25,7 @@ body {
   }
 
   .icon-text {
-    @apply text-4xl lowercase;
+    @apply text-3xl lowercase;
   }
 }
 

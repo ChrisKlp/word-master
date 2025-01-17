@@ -8,22 +8,28 @@ export default function Home() {
       <h1 className="my-4 text-center text-xl font-bold">Wybierz grę:</h1>
       <div className="grid grid-cols-2 gap-4">
         <GameButtonLink
-          title="2 sylaby"
-          subtitle="sylaby otwarte"
+          title="lo-dy"
+          category="2 sylaby"
+          description="sylaby otwarte"
           href={getGameRoute('s2_open')}
-          icon={<span className="icon-text text-emerald-400">lo-dy</span>}
         />
         <GameButtonLink
-          title="2 sylaby"
-          subtitle="otwarta i zamknięta"
+          title="ze-gar"
+          category="2 sylaby"
+          description="otwarta i zamknięta"
           href={getGameRoute('s2_open_close')}
-          icon={<span className="icon-text text-emerald-400">ze-gar</span>}
         />
         <GameButtonLink
-          title="2 sylaby"
-          subtitle="zamknięta i otwarta"
+          title="pił-ka"
+          category="2 sylaby"
+          description="zamknięta i otwarta"
           href={getGameRoute('s2_close_open')}
-          icon={<span className="icon-text text-emerald-400">pił-ka</span>}
+        />
+        <GameButtonLink
+          title="brzu-szek"
+          category="2 sylaby"
+          description="z grupami spółgłoskowymi"
+          href={getGameRoute('s2_consonant_clusters')}
         />
       </div>
     </MainLayout>
