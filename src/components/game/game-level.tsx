@@ -103,8 +103,8 @@ export function GameLevel({ data }: GameLevelProps) {
             <main className="container w-full flex-1 overflow-y-auto">
               <div className="flex h-full flex-col px-6">
                 <div className="flex h-1/3 min-h-32 items-center justify-between">
-                  <div className="flex h-full w-full items-center overflow-hidden">
-                    <div className="relative aspect-square h-full max-w-[40vw]">
+                  <div className="flex h-full w-full items-center">
+                    <div className="relative h-full w-full min-w-20 max-w-[200px]">
                       <Image
                         src={gameImages[progress % gameImages.length]}
                         fill
@@ -119,6 +119,7 @@ export function GameLevel({ data }: GameLevelProps) {
                     size="speakerSmall"
                   />
                 </div>
+
                 <div className="bg-math-lines flex flex-1 flex-wrap content-start gap-x-2 gap-y-3 px-6 pt-[7px]">
                   {selectedSyllables.map((i, index) => (
                     <Button
@@ -138,6 +139,7 @@ export function GameLevel({ data }: GameLevelProps) {
                     </Button>
                   ))}
                 </div>
+
                 <div className="flex h-1/3 min-h-44 flex-wrap content-end items-end justify-center gap-2 pb-6">
                   {cWord.syllables.map((i, index) => {
                     const currentItem: SelectedSyllable = {

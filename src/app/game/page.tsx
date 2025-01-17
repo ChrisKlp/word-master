@@ -17,7 +17,13 @@ export default function Home() {
           title="2 sylaby"
           subtitle="otwarta i zamknięta"
           href={getGameRoute('s2_open_close')}
-          icon={<span className="icon-text text-indigo-500">ze-gar</span>}
+          icon={<span className="icon-text text-emerald-400">ze-gar</span>}
+        />
+        <GameButtonLink
+          title="2 sylaby"
+          subtitle="zamknięta i otwarta"
+          href={getGameRoute('s2_close_open')}
+          icon={<span className="icon-text text-emerald-400">pił-ka</span>}
         />
       </div>
     </MainLayout>
