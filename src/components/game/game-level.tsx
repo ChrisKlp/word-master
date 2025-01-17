@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button';
 import { gameImages } from '@/lib/game-utils';
 import { useTextToSpeech } from '@/lib/hooks/useTestToSpeech';
 import { GameLevelData, GameStatus, SelectedSyllable } from '@/lib/types';
-import { setTenPoints } from '@/lib/utils';
+import { updateLocalPoints } from '@/lib/utils';
 
 import { CongratulationsView } from './congratulations-view';
 import { GameFooter } from './game-footer';
@@ -76,7 +76,7 @@ export function GameLevel({ data }: GameLevelProps) {
         } else if (!isFinished) {
           setIsFinished(true);
           finishControls.play();
-          setTenPoints();
+          updateLocalPoints(data.points);
         }
         setStatus(GameStatus.idle);
       }, RESULT_DELAY);
@@ -97,7 +97,7 @@ export function GameLevel({ data }: GameLevelProps) {
       <div className="flex h-dvh flex-col overflow-hidden">
         <GameHeader isFinished={isFinished} currentProgress={currentProgress} />
         {isFinished ? (
-          <CongratulationsView />
+          <CongratulationsView points={data.points} />
         ) : (
           <>
             <main className="container w-full flex-1 overflow-y-auto">

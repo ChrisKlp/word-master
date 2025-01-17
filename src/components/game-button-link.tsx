@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 type GameButtonProps = {
   href: string;
   title?: string;
-  titleColor?: string;
+  titleCss?: string;
   category: string;
   description?: string;
   icon?: ReactNode;
@@ -18,7 +18,7 @@ type GameButtonProps = {
 export function GameButtonLink({
   href,
   title,
-  titleColor,
+  titleCss,
   category,
   description,
   icon,
@@ -31,7 +31,7 @@ export function GameButtonLink({
           <span
             className={cn(
               'mb-2 max-w-full truncate text-emerald-400',
-              titleColor,
+              titleCss,
             )}
           >
             {title ? (

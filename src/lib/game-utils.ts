@@ -16,13 +16,13 @@ export function pickWords(words: string[], n = 10) {
 
 export function pickSyllables(syllables: string[], word: string, n = 4) {
   const wordSyllables = word.split('-');
-  const syllablesSet = [...wordSyllables];
+  const syllablesSet = new Set(wordSyllables);
   const uniqueSyllables = unique(syllables);
 
-  while (syllablesSet.length < n) {
-    const randomIndex = randomInteger(0, unique(syllables).length - 1);
+  while (syllablesSet.size < n) {
+    const randomIndex = randomInteger(0, uniqueSyllables.length - 1);
     const randomSyllable = uniqueSyllables[randomIndex];
-    syllablesSet.push(randomSyllable);
+    syllablesSet.add(randomSyllable);
   }
 
   return shuffle(Array.from(syllablesSet));

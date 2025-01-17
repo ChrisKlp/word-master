@@ -7,7 +7,7 @@ import { useWindowSize } from 'react-use';
 import { Button } from '@/components/ui/button';
 import { routes } from '@/lib/routes';
 
-export function CongratulationsView() {
+export function CongratulationsView({ points }: { points: number }) {
   const { width, height } = useWindowSize();
 
   return (
@@ -24,7 +24,7 @@ export function CongratulationsView() {
       <p>Runda została ukończona.</p>
       <div className="flex items-center gap-2">
         <Image src={'/points.svg'} width={40} height={40} alt="points" />
-        <p className="font-bold text-amber-500">+ 10 punktów</p>
+        <p className="font-bold text-amber-500">{`+ ${points} punktów`}</p>
       </div>
       <Button asChild>
         <Link href={routes.game}>Powrót</Link>
