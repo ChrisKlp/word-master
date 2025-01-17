@@ -1,7 +1,7 @@
 import { map, pipe, randomInteger, shuffle, take, unique } from 'remeda';
 import { v4 as uuidv4 } from 'uuid';
 
-import { GameData } from './types';
+import { GameData, GameLevelData } from './types';
 
 export const gameImages = [
   '/man.svg',
@@ -32,15 +32,25 @@ export function getDisplayWord(word: string) {
   return word.replaceAll('-', '');
 }
 
-export function getGameLevelData(gameData: GameData, n = 10) {
+export function getGameLevelData(gameData: GameData, n = 10): GameLevelData {
   const words = pickWords(gameData.words, n);
   const levelData = map(words, (word) => {
-    const syllables = pickSyllables(gameData.syllables, word, 5);
-    return { id: uuidv4(), word, syllables, displayWord: getDisplayWord(word) };
+    const syllables = pickSyllables(
+      gameData.syllables,
+      word,
+      gameData.syllablesToPick,
+    );
+    return {
+      id: uuidv4(),
+      word,
+      syllables,
+      displayWord: getDisplayWord(word),
+    };
   });
 
   return {
     levelData,
     rounds: n,
+    points: gameData.points,
   };
 }

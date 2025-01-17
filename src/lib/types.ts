@@ -1,6 +1,8 @@
 export type GameData = {
   words: string[];
   syllables: string[];
+  points: number;
+  syllablesToPick: number;
 };
 
 export type LevelData = {
@@ -13,6 +15,7 @@ export type LevelData = {
 export type GameLevelData = {
   levelData: LevelData[];
   rounds: number;
+  points: number;
 };
 
 export type SelectedSyllable = {
