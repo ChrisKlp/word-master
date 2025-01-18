@@ -6,6 +6,7 @@ import { useAudio, useWindowSize } from 'react-use';
 import pointsImg from '@/assets/points.svg';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { gameImages } from '@/lib/game-utils';
 import { PetData } from '@/lib/types';
 import { getTotalPoints as getTotalLevelExp } from '@/lib/utils';
 
@@ -56,7 +57,7 @@ export default function Pet({ data }: { data: PetData }) {
           />
         )}
         <Image
-          src="/zombie.svg"
+          src={gameImages[level % gameImages.length]}
           width={300}
           height={300}
           alt="Mascot"
