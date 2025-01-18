@@ -29,3 +29,13 @@ export enum GameStatus {
   'error' = 'error',
   'warning' = 'warning',
 }
+
+export type PetData = {
+  id: string;
+  name: string;
+  level: number;
+  exp: number;
+  expStart: number;
+};
+
+export type PetStorageData = Omit<PetData, 'expStart'>;
