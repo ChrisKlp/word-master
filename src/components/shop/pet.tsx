@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { useAudio } from 'react-use';
+import ReactConfetti from 'react-confetti';
+import { useAudio, useWindowSize } from 'react-use';
 
 import pointsImg from '@/assets/points.svg';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,8 @@ export default function Pet({ data }: { data: PetData }) {
 
   const totalLevelExp = getTotalLevelExp(level, data.expStart);
   const progress = (experience / totalLevelExp) * 100;
+
+  const { width, height } = useWindowSize();
 
   const [nextLevelAudio, , nextLevelControls] = useAudio({
     src: '/next-level.mp3',
@@ -42,8 +45,26 @@ export default function Pet({ data }: { data: PetData }) {
     <>
       {nextLevelAudio}
       {cashAudio}
-      <div className="mt-8 grid w-full justify-items-center gap-6">
-        <Image src="/zombie.svg" width={300} height={300} alt="Mascot" />
+      <div className="mb-8 mt-8 grid w-full justify-items-center gap-6">
+        {progress === 0 && level > 1 && (
+          <ReactConfetti
+            width={width}
+            height={height}
+            recycle={false}
+            numberOfPieces={300}
+            tweenDuration={1000}
+          />
+        )}
+        <Image
+          src="/zombie.svg"
+          width={300}
+          height={300}
+          alt="Mascot"
+          style={{
+            scale: level / 10,
+          }}
+          className="transition-all"
+        />
         <div className="grid w-[80%] justify-items-center">
           <h2 className="text-2xl font-extrabold">{data.name}</h2>
           <h3 className="text-lg font-extrabold text-indigo-500">
