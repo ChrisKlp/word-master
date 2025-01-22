@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 
+import { PointsProvider } from '@/components/points-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 
 import './globals.css';
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={nunito.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <PointsProvider>{children}</PointsProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

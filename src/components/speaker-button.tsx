@@ -2,7 +2,7 @@
 
 import { Pause, Volume2 } from 'lucide-react';
 
-import { useTextToSpeech } from '@/lib/hooks/useTestToSpeech';
+import { useTextToSpeech } from '@/lib/hooks/useTextToSpeech';
 
 import { Button } from './ui/button';
 

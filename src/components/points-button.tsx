@@ -2,18 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useLayoutEffect, useState } from 'react';
 
 import pointsImg from '@/assets/points.svg';
+import { usePoints } from '@/components/points-provider';
 import { Button } from '@/components/ui/button';
-import { getPoints } from '@/lib/utils';
 
 export function PointsButton() {
-  const [points, setPoints] = useState(0);
-
-  useLayoutEffect(() => {
-    setPoints(getPoints());
-  }, []);
+  const { points } = usePoints();
 
   return (
     <Button asChild variant="ghost" className="text-orange-500">

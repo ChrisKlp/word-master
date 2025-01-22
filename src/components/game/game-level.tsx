@@ -12,12 +12,12 @@ import {
   map,
 } from 'remeda';
 
+import { usePoints } from '@/components/points-provider';
 import { SpeakerButton } from '@/components/speaker-button';
 import { Button } from '@/components/ui/button';
 import { gameImages } from '@/lib/game-utils';
-import { useTextToSpeech } from '@/lib/hooks/useTestToSpeech';
+import { useTextToSpeech } from '@/lib/hooks/useTextToSpeech';
 import { GameLevelData, GameStatus, SelectedSyllable } from '@/lib/types';
-import { updateLocalPoints } from '@/lib/utils';
 
 import { CongratulationsView } from './congratulations-view';
 import { GameFooter } from './game-footer';
@@ -30,6 +30,7 @@ type GameLevelProps = {
 const RESULT_DELAY = 1200;
 
 export function GameLevel({ data }: GameLevelProps) {
+  const { addPoints } = usePoints();
   const [progress, setProgress] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [status, setStatus] = useState<GameStatus>(GameStatus.idle);
@@ -76,7 +77,7 @@ export function GameLevel({ data }: GameLevelProps) {
         } else if (!isFinished) {
           setIsFinished(true);
           finishControls.play();
-          updateLocalPoints(data.points);
+          addPoints(data.points);
         }
         setStatus(GameStatus.idle);
       }, RESULT_DELAY);

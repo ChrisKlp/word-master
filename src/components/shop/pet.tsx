@@ -4,11 +4,12 @@ import ReactConfetti from 'react-confetti';
 import { useAudio, useWindowSize } from 'react-use';
 
 import pointsImg from '@/assets/points.svg';
+import { usePoints } from '@/components/points-provider';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { gameImages } from '@/lib/game-utils';
 import { PetData } from '@/lib/types';
-import { getTotalPoints as getTotalLevelExp } from '@/lib/utils';
+import { getTotalExpForNextLevel, updatePetData } from '@/lib/utils';
 
 const EXP_PROGRESS_STEP = 10;
 const LEVEL_UPDATE_DELAY = 800;
@@ -16,8 +17,10 @@ const LEVEL_UPDATE_DELAY = 800;
 export default function Pet({ data }: { data: PetData }) {
   const [experience, setExperience] = useState(data.exp);
   const [level, setLevel] = useState(data.level);
+  const { removePoints, points } = usePoints();
 
-  const totalLevelExp = getTotalLevelExp(level, data.expStart);
+  const totalLevelExp = getTotalExpForNextLevel(level, data.expStart);
+
   const progress = (experience / totalLevelExp) * 100;
 
   const { width, height } = useWindowSize();
@@ -32,22 +35,35 @@ export default function Pet({ data }: { data: PetData }) {
   const handleUpdateProgress = () => {
     cashControls.seek(0);
     cashControls.play();
-    setExperience((prev) => prev + EXP_PROGRESS_STEP);
+    let newLevel = level;
+    let newExperience = experience + EXP_PROGRESS_STEP;
+    setExperience(newExperience);
+    removePoints(10);
     setTimeout(() => {
-      if (experience + EXP_PROGRESS_STEP >= totalLevelExp) {
-        setLevel((prev) => prev + 1);
-        setExperience(0);
+      if (newExperience >= totalLevelExp) {
+        newExperience = 0;
+        newLevel += 1;
+        setLevel(newLevel);
+        setExperience(newExperience);
         nextLevelControls.play();
       }
+      updatePetData({
+        ...data,
+        exp: newExperience,
+        level: newLevel,
+      });
     }, LEVEL_UPDATE_DELAY);
   };
+
+  const isNewLevelAchieved =
+    progress === 0 && level > 1 && data.level !== level;
 
   return (
     <>
       {nextLevelAudio}
       {cashAudio}
       <div className="mb-8 mt-8 grid w-full justify-items-center gap-6">
-        {progress === 0 && level > 1 && (
+        {isNewLevelAchieved && (
           <ReactConfetti
             width={width}
             height={height}
@@ -76,7 +92,10 @@ export default function Pet({ data }: { data: PetData }) {
             Przekaż zdobytą energię aby zwiększyć poziom pupila.
           </p>
         </div>
-        <Button onClick={handleUpdateProgress} disabled={progress === 100}>
+        <Button
+          onClick={handleUpdateProgress}
+          disabled={progress === 100 || points < 10}
+        >
           <span className="flex items-center">
             Zapłać Energią
             <span className="flex items-center text-orange-500">
