@@ -18,11 +18,6 @@ export default function Pet({ data }: { data: PetData }) {
   const [experience, setExperience] = useState(data.exp);
   const [level, setLevel] = useState(data.level);
   const { removePoints, points } = usePoints();
-
-  const totalLevelExp = getTotalExpForNextLevel(level, data.expStart);
-
-  const progress = (experience / totalLevelExp) * 100;
-
   const { width, height } = useWindowSize();
 
   const [nextLevelAudio, , nextLevelControls] = useAudio({
@@ -31,6 +26,9 @@ export default function Pet({ data }: { data: PetData }) {
   const [cashAudio, , cashControls] = useAudio({
     src: '/cash.mp3',
   });
+
+  const totalLevelExp = getTotalExpForNextLevel(level, data.expStart);
+  const progress = (experience / totalLevelExp) * 100;
 
   const handleUpdateProgress = () => {
     cashControls.seek(0);
@@ -72,16 +70,21 @@ export default function Pet({ data }: { data: PetData }) {
             tweenDuration={1000}
           />
         )}
-        <Image
-          src={gameImages[level % gameImages.length]}
-          width={300}
-          height={300}
-          alt="Mascot"
-          style={{
-            scale: level / 10,
-          }}
-          className="transition-all"
-        />
+        <div className="relative h-72 w-72 overflow-hidden">
+          {gameImages.map((image, index) => (
+            <Image
+              key={index}
+              src={image}
+              fill
+              alt={`Slide ${index}`}
+              className={`absolute inset-0 object-cover transition-opacity duration-1000 ease-in-out ${
+                index === (level - 1) % gameImages.length
+                  ? 'opacity-100'
+                  : 'opacity-0'
+              }`}
+            />
+          ))}
+        </div>
         <div className="grid w-[80%] justify-items-center">
           <h2 className="text-2xl font-extrabold">{data.name}</h2>
           <h3 className="text-lg font-extrabold text-indigo-500">
@@ -89,7 +92,7 @@ export default function Pet({ data }: { data: PetData }) {
           </h3>
           <Progress className="my-4 h-6 w-full" value={progress} />
           <p className="upp text-center text-sm text-slate-500">
-            Przekaż zdobytą energię aby zwiększyć poziom pupila.
+            Przekaż zdobytą energię.
           </p>
         </div>
         <Button
